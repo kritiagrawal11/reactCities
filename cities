@@ -50,3 +50,4 @@ class Screen extends React.Component{
 ReactDOM.render(
 <Screen />,
 document.getElementById('root')
+);
