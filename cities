@@ -1,0 +1,52 @@
+function States(props){
+return (<div className="states">
+  <select id="states" name="state" onChange = {props.onchange}>
+<option value="Karnataka">Karnataka</option>
+<option value="Jharkhand">Jharkhand</option>
+<option value="Maharashtra">Maharashtra</option>
+</select>
+</div>)
+
+};
+
+function Cities(props){
+var Data     = props.data,
+          MakeItem = function(X) {
+              return <option>{X}</option>;
+          };
+      return (<div className="cities"><select>{Data.map(MakeItem)}</select></div>);
+};
+const jharkhand=['ranchi','dhanbad','bokaro'];
+const maharashtra=['mumbai','lathur'];
+const karnataka=['bangalore','mysore'];
+class Screen extends React.Component{
+      constructor(props) {
+  super(props);
+  this.state = {city :karnataka};
+  this.handleChange = this.handleChange.bind(this);
+}
+      handleChange(e)
+      { var sel = document.getElementById('states');
+       if(sel.value=="Karnataka")
+        this.setState({city :karnataka});
+       if(sel.value=="Jharkhand")
+         this.setState({city :jharkhand});
+         if(sel.value=="Maharashtra")
+           this.setState({city :maharashtra});
+       }
+  render() {
+  return (
+    <div>
+      <States onchange={this.handleChange}/>
+      <br/>
+<Cities data={this.state.city}/>
+    </div>
+  );
+}
+
+
+      }
+
+ReactDOM.render(
+<Screen />,
+document.getElementById('root')
